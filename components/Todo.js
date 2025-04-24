@@ -1,12 +1,3 @@
-// data: an object containing the data for an individual
-// to-do item. You can see the shape of this data by
-// referring to the initialTodos array.
-//
-// &
-//
-// selector: a selector string for the corresponding
-// <template> element
-
 export class Todo {
   constructor(data, selector, id) {
     this.id = id;
@@ -57,7 +48,5 @@ export class Todo {
     this._setEventListeners();
 
     return todoElement;
-    // Testing only below
-    // return todoDeleteBtn;
   }
 }

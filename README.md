@@ -13,13 +13,13 @@ This app was built using a combination of HTML, CSS and JavaScript. I created cl
 It is a simple app, it comes with a Home Page, A module to add new Tasks, and errors that will pop up when the data entered for a new task does not make sense (see screenshots below).
 
 HomePage:
-![homePage](./app-screenshots/home-page.png)
+![homePage](./images/home-page.png)
 
 Add Tasks Form:
-![addTasksForm](./app-screenshots/add-form-page.png)
+![addTasksForm](./images/add-form-page.png)
 
 Prevent users for adding giberish data:
-![errorPopups](./app-screenshots/errors.png)
+![errorPopups](./images/errors.png)
 
 ## Deployment
 

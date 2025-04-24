@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
-// Getting items imported from Constants.js (So far)
 import { initialTodos, validationConfig } from "../utils/constants.js";
 import { Todo } from "../components/Todo.js";
 import { FormValidator } from "../components/FormValidator.js";
@@ -27,22 +26,23 @@ addTodoCloseBtn.addEventListener("click", () => {
   closeModal(addTodoPopup);
 });
 
-addTodoForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const name = evt.target.name.value;
-  const dateInput = evt.target.date.value;
+// uncomment below code later once ive made everything else work
+//
+// addTodoForm.addEventListener("submit", (evt) => {
+//   evt.preventDefault();
+//   const name = evt.target.name.value;
+//   const dateInput = evt.target.date.value;
 
-  // Create a date object and adjust for timezone
-  const date = new Date(dateInput);
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+//   // Create a date object and adjust for timezone
+//   const date = new Date(dateInput);
+//   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
-  const values = { name, date };
-  const todo = generateTodo(values);
-  todosList.append(todo);
-  closeModal(addTodoPopup);
-});
+//   const values = { name, date };
+//   const todo = new Todo(values, todoTemplate, uuidv4());
+//   todosList.append(todo);
+//   closeModal(addTodoPopup);
+// });
 
-// move import to top later..possibly
 initialTodos.forEach((item) => {
   const todo = new Todo(item, todoTemplate, uuidv4());
   const readyTodoEl = todo.getView();

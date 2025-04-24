@@ -31,11 +31,11 @@
 //   }
 // };
 
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
+// const hasInvalidInput = (inputList) => {
+//   return inputList.some((inputElement) => {
+//     return !inputElement.validity.valid;
+//   });
+// };
 
 // _toggleButtonState method.....
 // const toggleButtonState = (inputList, buttonElement, settings) => {
@@ -76,4 +76,4 @@ const hasInvalidInput = (inputList) => {
 //   setEventListeners(formElement, settings);
 // };
 
-enableValidation(validationConfig);
+// enableValidation(validationConfig);

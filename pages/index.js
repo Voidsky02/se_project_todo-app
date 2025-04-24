@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 // Getting items imported from Constants.js (So far)
 import { initialTodos, validationConfig } from "../utils/constants.js";
 import { Todo } from "../components/Todo.js";
+import { FormValidator } from "../components/FormValidator.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
@@ -52,3 +53,6 @@ initialTodos.forEach((item) => {
 // of the FormValidator class and call its
 // enableValidation() method.
 // BELOW VVVVVVV
+
+const validateAddTodoForm = new FormValidator(validationConfig, addTodoForm);
+validateAddTodoForm.enableValidation();

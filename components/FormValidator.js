@@ -1,4 +1,4 @@
-import { validationConfig } from "../utils/constants";
+import { validationConfig } from "../utils/constants.js";
 
 // Delete later (I would like to see the classes & selectors)
 // const validationConfig = {
@@ -48,8 +48,8 @@ export class FormValidator {
 
   // below may need work in my selector...
   _hasInvalidInput() {
-    // const hasInvalidInput = (inputList) => {
-    //   return this.formElement.querySelectorAll(this.settings.inputSelector).some((inputElement) => {
+    // const inputList = this.formElement.querySelectorAll(this.settings.inputSelector);
+    //   return inputList.some((inputElement) => {
     //     return !inputElement.validity.valid;
     //   });
     // };
@@ -57,6 +57,8 @@ export class FormValidator {
 
   _toggleButtonState() {
     // const toggleButtonState = (inputList, buttonElement, settings) => {
+    // delete above ^
+    //
     // const buttonElement = this.formElement.querySelector(this.settings.submitButtonSelector);
     //   if (this._hasInvalidInput()) {
     //     buttonElement.classList.add(this.settings.inactiveButtonClass);
@@ -70,17 +72,19 @@ export class FormValidator {
 
   _setEventListeners() {
     // const setEventListeners = (formElement, settings) => {
+    // delete above ^
+    //
     //   const inputList = Array.from(
-    //     formElement.querySelectorAll(settings.inputSelector)
+    //     this.formElement.querySelectorAll(this.settings.inputSelector)
     //   );
-    //   const buttonElement = formElement.querySelector(
-    //     settings.submitButtonSelector
+    //   const buttonElement = this.formElement.querySelector(
+    //     this.settings.submitButtonSelector
     //   );
-    //   toggleButtonState(inputList, buttonElement, settings);
+    //   toggleButtonState();
     //   inputList.forEach((inputElement) => {
     //     inputElement.addEventListener("input", () => {
-    //       checkInputValidity(formElement, inputElement, settings);
-    //       toggleButtonState(inputList, buttonElement, settings);
+    //       checkInputValidity(inputElement);
+    //       toggleButtonState();
     //     });
     //   });
     // };
@@ -89,10 +93,13 @@ export class FormValidator {
   enableValidation() {
     // const enableValidation = (settings) => {
     //   const formElement = document.querySelector(settings.formSelector);
-    //   formElement.addEventListener("submit", (evt) => {
+    //
+    // delete above ^ saving for now just in case
+    //
+    //   this.formElement.addEventListener("submit", (evt) => {
     //     evt.preventDefault();
     //   });
-    //   setEventListeners(formElement, settings);
+    //   setEventListeners();
     // };
   }
 }

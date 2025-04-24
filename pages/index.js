@@ -26,33 +26,34 @@ addTodoCloseBtn.addEventListener("click", () => {
   closeModal(addTodoPopup);
 });
 
-// uncomment below code later once ive made everything else work
-//
-// addTodoForm.addEventListener("submit", (evt) => {
-//   evt.preventDefault();
-//   const name = evt.target.name.value;
-//   const dateInput = evt.target.date.value;
+// This is to add new Custom task with the Add Todo button
+addTodoForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  const name = evt.target.name.value;
 
-//   // Create a date object and adjust for timezone
-//   const date = new Date(dateInput);
-//   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+  const dateInput = evt.target.date.value;
 
-//   const values = { name, date };
-//   const todo = new Todo(values, todoTemplate, uuidv4());
-//   todosList.append(todo);
-//   closeModal(addTodoPopup);
-// });
+  // Create a date object and adjust for timezone
+  const date = new Date(dateInput);
+  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
+  const values = { name, date };
+  const todo = new Todo(values, todoTemplate, uuidv4());
+  const readyTodoElement = todo.getView();
+  todosList.append(readyTodoElement);
+  // Reset form fields after submission v
+  validateAddTodoForm.resetValidation();
+  closeModal(addTodoPopup);
+});
+
+// This sets up the initial default Todo's
 initialTodos.forEach((item) => {
   const todo = new Todo(item, todoTemplate, uuidv4());
   const readyTodoEl = todo.getView();
   todosList.append(readyTodoEl);
 });
 
-// In index.js, you’ll need to create an instance
-// of the FormValidator class and call its
+// Create an instance of the FormValidator class and call its
 // enableValidation() method.
-// BELOW VVVVVVV
-
 const validateAddTodoForm = new FormValidator(validationConfig, addTodoForm);
 validateAddTodoForm.enableValidation();

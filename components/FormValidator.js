@@ -1,15 +1,3 @@
-import { validationConfig } from "../utils/constants.js";
-
-// Delete later (I would like to see the classes & selectors)
-// const validationConfig = {
-//     formSelector: ".popup__form",
-//     inputSelector: ".popup__input",
-//     submitButtonSelector: ".popup__button",
-//     errorClass: "popup__error_visible",
-//     inputErrorClass: "popup__input_type_error",
-//     inactiveButtonClass: "button_disabled",
-// };
-
 export class FormValidator {
   constructor(settings, formElement) {
     this.settings = settings;
@@ -86,5 +74,11 @@ export class FormValidator {
     });
 
     this._setEventListeners();
+  }
+
+  resetValidation() {
+    this.formElement.reset();
+
+    this._toggleButtonState();
   }
 }

@@ -1,5 +1,6 @@
 // Getting items imported from Constants.js (So far)
 import { initialTodos, validationConfig } from "../utils/constants.js";
+import { Todo } from "../components/Todo.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
@@ -84,7 +85,6 @@ addTodoForm.addEventListener("submit", (evt) => {
 });
 
 // move import to top later..possibly
-import { Todo } from "../components/Todo.js";
 initialTodos.forEach((item) => {
   const todo = new Todo(item, "#todo-template");
   const readyTodoEl = todo.getView();

@@ -15,6 +15,15 @@ export class Todo {
     this.selector = selector;
   }
 
+  _setEventListeners() {
+    // Set event listeners for 'Delete Button' and 'Checkbox'
+    this.deleteBtn.addEventListener("click", () => {
+      this.todoEl.remove();
+    });
+
+    this.checkboxEl.addEventListener("click", () => {});
+  }
+
   getView() {
     // use class instances
     const todoElement = document
@@ -25,6 +34,11 @@ export class Todo {
     const todoLabel = todoElement.querySelector(".todo__label");
     const todoDate = todoElement.querySelector(".todo__date");
     const todoDeleteBtn = todoElement.querySelector(".todo__delete-btn");
+
+    // set certain elements as class properties for eventListener access
+    this.todoEl = todoElement.querySelector(".todo");
+    this.deleteBtn = todoDeleteBtn;
+    this.checkboxEl = todoCheckboxEl;
 
     todoNameEl.textContent = this.name;
     todoCheckboxEl.checked = this.completed;
@@ -40,6 +54,8 @@ export class Todo {
         day: "numeric",
       })}`;
     }
+
+    this._setEventListeners();
 
     return todoElement;
     // Testing only below

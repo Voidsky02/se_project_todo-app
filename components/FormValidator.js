@@ -11,39 +11,58 @@ import { validationConfig } from "../utils/constants";
 // };
 
 export class FormValidator {
-  constructor(config, formElement) {
+  constructor(settings, formElement) {
+    this.settings = settings;
     this.formElement = formElement;
-    // validationConfig below
-    this.formSelector = config.formSelector;
-    this.inputSelector = config.inputSelector;
-    this.SubmitButtonSelector = config.submitButtonSelector;
-    this.errorClass = config.errorClass;
-    this.inputErrorClass = config.inputErrorClass;
-    this.inactiveButtonClass = config.inactiveButtonClass;
   }
 
-  _checkInputValidity() {
+  _showInputError(inputElement) {
+    // const showInputError = (inputElement, errorMessage) => {
+    //   const errorElementId = `#${inputElement.id}-error`;
+    //   const errorElement = this.formElement.querySelector(errorElementId);
+    //   inputElement.classList.add(this.settings.inputErrorClass);
+    //   errorElement.textContent = inputElement.validationMessage;
+    //   errorElement.classList.add(this.settings.errorClass);
+    // };
+  }
+
+  _hideInputError(inputElement) {
+    // const showInputError = (inputElement, errorMessage) => {
+    //   const errorElementId = `#${inputElement.id}-error`;
+    //   const errorElement = this.formElement.querySelector(errorElementId);
+    //   inputElement.classList.add(this.settings.inputErrorClass);
+    //   errorElement.textContent = inputElement.validationMessage;
+    //   errorElement.classList.add(this.settings.errorClass);
+    // };
+  }
+
+  _checkInputValidity(inputElement) {
     // const checkInputValidity = (formElement, inputElement, settings) => {
     //   if (!inputElement.validity.valid) {
-    //     showInputError(
-    //       formElement,
-    //       inputElement,
-    //       inputElement.validationMessage,
-    //       settings
-    //     );
+    //     showInputError(inputElement);
     //   } else {
-    //     hideInputError(formElement, inputElement, settings);
+    //     hideInputError(inputElement);
     //   }
+    // };
+  }
+
+  // below may need work in my selector...
+  _hasInvalidInput() {
+    // const hasInvalidInput = (inputList) => {
+    //   return this.formElement.querySelectorAll(this.settings.inputSelector).some((inputElement) => {
+    //     return !inputElement.validity.valid;
+    //   });
     // };
   }
 
   _toggleButtonState() {
     // const toggleButtonState = (inputList, buttonElement, settings) => {
-    //   if (hasInvalidInput(inputList)) {
-    //     buttonElement.classList.add(settings.inactiveButtonClass);
+    // const buttonElement = this.formElement.querySelector(this.settings.submitButtonSelector);
+    //   if (this._hasInvalidInput()) {
+    //     buttonElement.classList.add(this.settings.inactiveButtonClass);
     //     buttonElement.disabled = true;
     //   } else {
-    //     buttonElement.classList.remove(settings.inactiveButtonClass);
+    //     buttonElement.classList.remove(this.settings.inactiveButtonClass);
     //     buttonElement.disabled = false;
     //   }
     // };

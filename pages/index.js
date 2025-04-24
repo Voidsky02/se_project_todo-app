@@ -47,3 +47,8 @@ initialTodos.forEach((item) => {
   const readyTodoEl = todo.getView();
   todosList.append(readyTodoEl);
 });
+
+// In index.js, you’ll need to create an instance
+// of the FormValidator class and call its
+// enableValidation() method.
+// BELOW VVVVVVV

@@ -1,6 +1,10 @@
+import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 // Getting items imported from Constants.js (So far)
 import { initialTodos, validationConfig } from "../utils/constants.js";
 import { Todo } from "../components/Todo.js";
+
+// const randomID = uuidv4();
+// console.log(randomID);
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
@@ -86,7 +90,7 @@ addTodoForm.addEventListener("submit", (evt) => {
 
 // move import to top later..possibly
 initialTodos.forEach((item) => {
-  const todo = new Todo(item, "#todo-template");
+  const todo = new Todo(item, todoTemplate, uuidv4());
   const readyTodoEl = todo.getView();
   todosList.append(readyTodoEl);
 });

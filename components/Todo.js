@@ -6,9 +6,10 @@
 //
 // selector: a selector string for the corresponding
 // <template> element
+
 export class Todo {
-  constructor(data, selector) {
-    this.id = data.id;
+  constructor(data, selector, id) {
+    this.id = id;
     this.name = data.name;
     this.completed = data.completed;
     this.date = data.date;
@@ -26,9 +27,7 @@ export class Todo {
 
   getView() {
     // use class instances
-    const todoElement = document
-      .querySelector(this.selector)
-      .content.cloneNode(true);
+    const todoElement = this.selector.content.cloneNode(true);
     const todoNameEl = todoElement.querySelector(".todo__name");
     const todoCheckboxEl = todoElement.querySelector(".todo__completed");
     const todoLabel = todoElement.querySelector(".todo__label");

@@ -25,4 +25,4 @@ Prevent users for adding giberish data:
 
 This project is deployed on GitHub Pages:
 
-- ADD LINK HERE
+[Simple Todo App Link](https://voidsky02.github.io/se_project_todo-app/)

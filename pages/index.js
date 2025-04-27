@@ -5,7 +5,7 @@ import { FormValidator } from "../components/FormValidator.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
-const addTodoForm = addTodoPopup.querySelector(".popup__form");
+const addTodoForm = document.forms["add-todo-form"];
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todoTemplate = document.querySelector("#todo-template");
 const todosList = document.querySelector(".todos__list");
@@ -26,6 +26,13 @@ addTodoCloseBtn.addEventListener("click", () => {
   closeModal(addTodoPopup);
 });
 
+// function for creating new Todo elements
+const renderTodo = (item) => {
+  const todo = new Todo(item, todoTemplate, uuidv4());
+  const readyTodoEl = todo.getView();
+  todosList.append(readyTodoEl);
+};
+
 // This is to add new Custom task with the Add Todo button
 addTodoForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
@@ -38,9 +45,7 @@ addTodoForm.addEventListener("submit", (evt) => {
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
   const values = { name, date };
-  const todo = new Todo(values, todoTemplate, uuidv4());
-  const readyTodoElement = todo.getView();
-  todosList.append(readyTodoElement);
+  renderTodo(values);
   // Reset form fields after submission v
   validateAddTodoForm.resetValidation();
   closeModal(addTodoPopup);
@@ -48,9 +53,7 @@ addTodoForm.addEventListener("submit", (evt) => {
 
 // This sets up the initial default Todo's
 initialTodos.forEach((item) => {
-  const todo = new Todo(item, todoTemplate, uuidv4());
-  const readyTodoEl = todo.getView();
-  todosList.append(readyTodoEl);
+  renderTodo(item);
 });
 
 // Create an instance of the FormValidator class and call its

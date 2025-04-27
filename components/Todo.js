@@ -1,6 +1,6 @@
 export class Todo {
   constructor(data, selector, id) {
-    this.id = id;
+    this._id = id;
     this.name = data.name;
     this.completed = data.completed;
     this.date = data.date;
@@ -33,8 +33,8 @@ export class Todo {
     todoNameEl.textContent = this.name;
     todoCheckboxEl.checked = this.completed;
 
-    todoCheckboxEl.id = `todo-${this.id}`;
-    todoLabel.setAttribute("for", `todo-${this.id}`);
+    todoCheckboxEl.id = `todo-${this._id}`;
+    todoLabel.setAttribute("for", `todo-${this._id}`);
 
     const dueDate = new Date(this.date);
     if (!isNaN(dueDate)) {

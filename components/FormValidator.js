@@ -1,6 +1,6 @@
 export class FormValidator {
   constructor(settings, formElement) {
-    this.settings = settings;
+    this._settings = settings;
     this._formElement = formElement;
     this._inputErrorClass = settings.inputErrorClass;
     this._inactiveButtonClass = settings.inactiveButtonClass;
@@ -11,7 +11,7 @@ export class FormValidator {
     const errorElement = this._formElement.querySelector(errorElementId);
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = inputElement.validationMessage;
-    errorElement.classList.add(this.settings.errorClass);
+    errorElement.classList.add(this._settings.errorClass);
   }
 
   _hideInputError(inputElement) {
@@ -19,7 +19,7 @@ export class FormValidator {
     const errorElement = this._formElement.querySelector(errorElementId);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.textContent = "";
-    errorElement.classList.remove(this.settings.errorClass);
+    errorElement.classList.remove(this._settings.errorClass);
   }
 
   _checkInputValidity(inputElement) {
@@ -32,7 +32,7 @@ export class FormValidator {
 
   _hasInvalidInput() {
     const inputList = this._formElement.querySelectorAll(
-      this.settings.inputSelector
+      this._settings.inputSelector
     );
     const inputArray = Array.from(inputList);
 
@@ -43,7 +43,7 @@ export class FormValidator {
 
   _toggleButtonState() {
     const buttonElement = this._formElement.querySelector(
-      this.settings.submitButtonSelector
+      this._settings.submitButtonSelector
     );
     if (this._hasInvalidInput()) {
       buttonElement.classList.add(this._inactiveButtonClass);
@@ -56,7 +56,7 @@ export class FormValidator {
 
   _setEventListeners() {
     const inputList = Array.from(
-      this._formElement.querySelectorAll(this.settings.inputSelector)
+      this._formElement.querySelectorAll(this._settings.inputSelector)
     );
     this._toggleButtonState();
     inputList.forEach((inputElement) => {

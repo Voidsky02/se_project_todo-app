@@ -1,10 +1,10 @@
 export class Todo {
   constructor(data, selector, id) {
     this._id = id;
-    this.name = data.name;
-    this.completed = data.completed;
-    this.date = data.date;
-    this.selector = selector;
+    this._name = data.name;
+    this._completed = data.completed;
+    this._date = data.date;
+    this._selector = selector;
   }
 
   _setEventListeners() {
@@ -18,7 +18,7 @@ export class Todo {
 
   getView() {
     // use class instances
-    const todoElement = this.selector.content.cloneNode(true);
+    const todoElement = this._selector.content.cloneNode(true);
     const todoNameEl = todoElement.querySelector(".todo__name");
     const todoCheckboxEl = todoElement.querySelector(".todo__completed");
     const todoLabel = todoElement.querySelector(".todo__label");
@@ -30,13 +30,13 @@ export class Todo {
     this.deleteBtn = todoDeleteBtn;
     this.checkboxEl = todoCheckboxEl;
 
-    todoNameEl.textContent = this.name;
-    todoCheckboxEl.checked = this.completed;
+    todoNameEl.textContent = this._name;
+    todoCheckboxEl.checked = this._completed;
 
     todoCheckboxEl.id = `todo-${this._id}`;
     todoLabel.setAttribute("for", `todo-${this._id}`);
 
-    const dueDate = new Date(this.date);
+    const dueDate = new Date(this._date);
     if (!isNaN(dueDate)) {
       todoDate.textContent = `Due:     ${dueDate.toLocaleString("en-US", {
         year: "numeric",

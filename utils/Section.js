@@ -35,13 +35,23 @@ class Section {
 // Delete Later!!!!!!!!!!!!!!!!!!!!
 
 import {initialTodos} from "./constants.js";
-import {todosList} from "../pages/index.js";
+import {todosList, todoTemplate} from "../pages/index.js";
+import { v4 as uuidv4 } from "https://jspm.dev/uuid";
+import {Todo} from "../components/Todo.js";
 
 /* Remember, you define what exactly the renderer will create (Cards vs some other thing)
 when CREATING the new class, not when you define the Class outline */
-const testRun = new Section({items: initialTodos, renderer: (cardItem) => {}, containerSelector: todosList})
+const testRun = new Section({items: initialTodos, renderer: (cardItem) => {
+    const todo = new Todo(cardItem, todoTemplate, uuidv4());
+    const readyTodoEl = todo.getView();
+    return readyTodoEl;
+}, containerSelector: ".todos__list"})
 
-// const todo = new Todo(item, todoTemplate, uuidv4());
+testRun.renderItems()
+
+
+
+// const todo = new Todo(cardItem, todoTemplate, uuidv4());
 // const readyTodoEl = todo.getView();
 // ABOVE ^ actually the todo.getView will be stored in newElement i think
 // this.addItem(readyTodoEl);

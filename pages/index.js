@@ -7,7 +7,8 @@ const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
 const addTodoForm = document.forms["add-todo-form"];
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
-const todoTemplate = document.querySelector("#todo-template");
+// temp export (Delete Later)
+export const todoTemplate = document.querySelector("#todo-template");
 // temp export (Delete Later)
 export const todosList = document.querySelector(".todos__list");
 
@@ -53,9 +54,9 @@ addTodoForm.addEventListener("submit", (evt) => {
 });
 
 // This sets up the initial default Todo's
-initialTodos.forEach((item) => {
-  renderTodo(item);
-});
+// initialTodos.forEach((item) => {
+//   renderTodo(item);
+// });
 
 // Create an instance of the FormValidator class and call its
 // enableValidation() method.

@@ -1,39 +1,37 @@
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 import { initialTodos, validationConfig } from "../utils/constants.js";
+import {Section} from "../utils/Section.js";
 import { Todo } from "../components/Todo.js";
 import { FormValidator } from "../components/FormValidator.js";
+
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
 const addTodoForm = document.forms["add-todo-form"];
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
-// temp export (Delete Later)
-export const todoTemplate = document.querySelector("#todo-template");
-// temp export (Delete Later)
-export const todosList = document.querySelector(".todos__list");
+const todoTemplate = document.querySelector("#todo-template");
+const todosList = document.querySelector(".todos__list");
 
+// delete this later after initializing Popup Classes
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
 };
 
+// delete this later after initializing Popup Classes
 const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
 };
 
+// open() method must be used from Popup Class or its child
 addTodoButton.addEventListener("click", () => {
   openModal(addTodoPopup);
 });
 
+// close() method must be used from Popup Class or its child
 addTodoCloseBtn.addEventListener("click", () => {
   closeModal(addTodoPopup);
 });
 
-// function for creating new Todo elements
-const renderTodo = (item) => {
-  const todo = new Todo(item, todoTemplate, uuidv4());
-  const readyTodoEl = todo.getView();
-  todosList.append(readyTodoEl);
-};
 
 // This is to add new Custom task with the Add Todo button
 addTodoForm.addEventListener("submit", (evt) => {
@@ -53,10 +51,17 @@ addTodoForm.addEventListener("submit", (evt) => {
   closeModal(addTodoPopup);
 });
 
-// This sets up the initial default Todo's
-// initialTodos.forEach((item) => {
-//   renderTodo(item);
-// });
+/* This sets up the initial default Todo's.
+   Renderer is defined when creating a new Section instance, not when defining
+   the Section class itself. */
+const testRun = new Section({items: initialTodos, renderer: (cardItem) => {
+  // this is written because we specifically want more todos to be created.
+    const todo = new Todo(cardItem, todoTemplate, uuidv4());
+    const readyTodoEl = todo.getView();
+    return readyTodoEl;
+}, containerSelector: ".todos__list"})
+
+testRun.renderItems()
 
 // Create an instance of the FormValidator class and call its
 // enableValidation() method.

@@ -34,6 +34,7 @@ addTodoCloseBtn.addEventListener("click", () => {
 
 
 // This is to add new Custom task with the Add Todo button
+// delete later?????
 addTodoForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const name = evt.target.name.value;

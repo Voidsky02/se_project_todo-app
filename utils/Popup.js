@@ -48,8 +48,16 @@ class Popup {
         /* adds a click event listener to the close icon of the popup. 
         The modal window should also close when users click on the 
         shaded area around the form. */
-        
-        this._popupSelector.querySelector(".popup__close").addEventListner("click", this.close);
+
+        // Add Event Listener to close icon
+        this._popupSelector.querySelector(".popup__close").addEventListener("click", this.close);
+
+        // Code for closing modal when outside area is clicked
+        this._popupSelector.addEventListener("mousedown", (event) => {
+            if (event.target.classList.contains("popup")) {
+                this.close();
+            }
+        })
     }
 }
 

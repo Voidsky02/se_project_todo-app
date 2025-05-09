@@ -13,13 +13,22 @@ class PopupWithForm extends Popup {
         object. This data should then be passed to the 
         submission handler as an argument. */
 
-        const inputValues = this._popupSelector.querySelectorAll(".popup__input");
-
         let valuesObject = {};
 
+        const inputValues = this._popupSelector.querySelectorAll(".popup__input");
+
         inputValues.forEach((input) => {
+            // add the func of transforming date to the method
+            if (input.name === "date") {
+                const date = new Date(input.date.value);
+                date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+                valuesObject[input.name] = date;
+            }
+
             valuesObject[input.name] = input.value;
         })
+
+        return valuesObject;
     }
 
     setEventListeners() {
@@ -31,7 +40,20 @@ class PopupWithForm extends Popup {
         setEventListeners() method of the parent class. */
         this._popupSelector.addEventListener("submit", (event) => {
             event.preventDefault();
-            callbackFunction;
+
+            // pass the valuesObject to submission handler as argument (we will define _callbackFunction)
+            // when declaring our first actual PopupWithForm Class, and we weill cater the func 
+            // to specifically making new Todo items.
+            this._callbackFunction(this._getInputValues);
         })
     }
 }
+
+
+// 
+// 
+/* Testing Below, transfer to appropiate place once confirmed working */
+
+import { addTodoForm } from '../pages/index.js';
+
+const TestTest = new PopupWithForm()

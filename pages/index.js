@@ -7,7 +7,8 @@ import { FormValidator } from "../components/FormValidator.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
-const addTodoForm = document.forms["add-todo-form"];
+// temp export, delete later
+export const addTodoForm = document.forms["add-todo-form"];
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todoTemplate = document.querySelector("#todo-template");
 const todosList = document.querySelector(".todos__list");
@@ -32,7 +33,9 @@ addTodoCloseBtn.addEventListener("click", () => {
   closeModal(addTodoPopup);
 });
 
-
+// 
+// 
+// 
 // This is to add new Custom task with the Add Todo button
 // delete later?????
 addTodoForm.addEventListener("submit", (evt) => {
@@ -51,6 +54,17 @@ addTodoForm.addEventListener("submit", (evt) => {
   validateAddTodoForm.resetValidation();
   closeModal(addTodoPopup);
 });
+// 
+// 
+// 
+// 
+
+// create func to add to renderer: parameter when making new Todo items so i dont repeate myself
+const rendererNewTodo = (cardItem) => {
+  const todo = new Todo(cardItem, todoTemplate, uuidv4());
+  const readyTodoEl = todo.getView();
+  return readyTodoEl;
+}
 
 /* This sets up the initial default Todo's.
    Renderer is defined when creating a new Section instance, not when defining

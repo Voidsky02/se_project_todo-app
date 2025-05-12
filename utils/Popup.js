@@ -26,9 +26,6 @@ class Popup {
         /* stores the logic for closing the popup by pressing 
         the Escape key. */
 
-        // going to call this on opening modals
-        this._popupSelector.addEventListener("keydown", isKeyEscape);
-
         // func for checking if key is Escape and what to do with it
         const isKeyEscape = (event) => {
             if (event.key === "Escape") {
@@ -42,6 +39,10 @@ class Popup {
         const removeEscapeKeyListener = () => {
             this._popupSelector.removeEventListener("keydown", isKeyEscape);
         }
+
+        // going to call this on opening modals
+        this._popupSelector.addEventListener("keydown", isKeyEscape);
+
     }
 
     setEventListeners() {
@@ -50,7 +51,9 @@ class Popup {
         shaded area around the form. */
 
         // Add Event Listener to close icon
-        this._popupSelector.querySelector(".popup__close").addEventListener("click", this.close());
+        this._popupSelector.querySelector(".popup__close").addEventListener("click", () => {
+            this.close();
+        });
 
         // Code for closing modal when outside area is clicked
         this._popupSelector.addEventListener("mousedown", (event) => {

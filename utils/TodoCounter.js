@@ -56,4 +56,4 @@ export default TodoCounter;
 // TESTING BELOW, DELETE LATER:
 const experiment = new TodoCounter(initialTodos, ".counter__text");
 
-console.log(experiment._completed);
+// console.log(experiment._completed);

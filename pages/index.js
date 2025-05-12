@@ -3,6 +3,7 @@ import { initialTodos, validationConfig } from "../utils/constants.js";
 import {Section} from "../utils/Section.js";
 import { Todo } from "../components/Todo.js";
 import { FormValidator } from "../components/FormValidator.js";
+import { PopupWithForm } from "../utils/PopupWithForm.js";
 
 
 // temp export, delete later
@@ -30,15 +31,15 @@ const closeModal = (modal) => {
 // TEST TO SEE IF TESTTEST works WHEN WITH THIS EVENT LISTENER
 // import {TestTest} from "../utils/PopupWithForm.js";
 // open() method must be used from Popup Class or its child
-addTodoButton.addEventListener("click", () => {
-  openModal(addTodoPopup);
-  console.log("test");
-});
+// 
+// addTodoButton.addEventListener("click", () => {
+//   openModal(addTodoPopup);
+// });
 
 // close() method must be used from Popup Class or its child
-addTodoCloseBtn.addEventListener("click", () => {
-  closeModal(addTodoPopup);
-});
+// addTodoCloseBtn.addEventListener("click", () => {
+//   closeModal(addTodoPopup);
+// });
 
 // 
 // 
@@ -93,6 +94,12 @@ validateAddTodoForm.enableValidation();
 // 
 // 
 // 
-// Testing below
-// import {TestTest} from "../utils/PopupWithForm.js";
+// Initiating AddTodo PopopWithForm class - calling its various methods below
+const AddTodoPopupFormClass = new PopupWithForm("#add-todo-popup", {callbackFunction: rendererNewTodo});
+
+AddTodoPopupFormClass.setEventListeners();
+
+addTodoButton.addEventListener("click", () => {
+  AddTodoPopupFormClass.open();
+});
 

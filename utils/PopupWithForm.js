@@ -2,11 +2,11 @@
 
 import Popup from './Popup.js';
 
-class PopupWithForm extends Popup {
+export class PopupWithForm extends Popup {
     constructor(popupSelector, {callbackFunction}) {
         super(popupSelector);
         this._callbackFunction = callbackFunction;
-        // make this a property? instead of inside _getInputValues method
+        // List of all input methods as a property of the object for ease of access
         this._inputValues = this._popupSelector.querySelectorAll(".popup__input");
     }
 
@@ -20,7 +20,6 @@ class PopupWithForm extends Popup {
 
         let emptyObject = {};
 
-        // I think the issue is this forEach method is not creating m
         this._inputValues.forEach((input) => {
             if (input.name === "date") {
                 const date = new Date(input.value);
@@ -35,7 +34,7 @@ class PopupWithForm extends Popup {
     }
 
     setEventListeners() {
-        // we will override the parents method v
+        // we will override the parents method
         super.setEventListeners();
 
         /* The setEventListeners() method of the PopupWithForm class 
@@ -54,29 +53,3 @@ class PopupWithForm extends Popup {
         })
     }
 }
-
-
-// 
-// 
-/* Testing Below, transfer to appropiate place once confirmed working */
-
-import { addTodoForm, rendererNewTodo, todoTemplate, addTodoButton } from '../pages/index.js';
-import {Section} from "../utils/Section.js";
-import {Todo} from "../components/Todo.js";
-import { v4 as uuidv4 } from "https://jspm.dev/uuid";
-
-
-// had to make the 'popupSelector' for the PopupWithForm class and ID selector temp but will look into fixing
-// 
-// problem is Section renderers by iterating over an ARRAY of OBJECTS but our PopupWithForms '_getInputValues'
-// method only returns a SINGLE OBJECT with all the data to create ONE Todo. So we need to figure out
-// how to fix this
-export const TestTest = new PopupWithForm("#add-todo-popup", {callbackFunction: rendererNewTodo});
-
-// I think the problem is NewTodosData is not defined anywhere
-// TestTest._callbackFunction();
-// TestTest._getInputValues();
-
-TestTest.setEventListeners();
-
-

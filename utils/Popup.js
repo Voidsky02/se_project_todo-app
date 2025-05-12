@@ -1,6 +1,5 @@
 class Popup {
     constructor(popupSelector) {
-        // thinks its better to do querySelector here
         this._popupSelector = document.querySelector(popupSelector);
     }
 

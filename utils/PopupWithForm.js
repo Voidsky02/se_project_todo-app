@@ -2,7 +2,7 @@
 
 import Popup from './Popup.js';
 
-export class PopupWithForm extends Popup {
+class PopupWithForm extends Popup {
     constructor(popupSelector, {callbackFunction}) {
         super(popupSelector);
         this._callbackFunction = callbackFunction;
@@ -53,3 +53,5 @@ export class PopupWithForm extends Popup {
         })
     }
 }
+
+export default PopupWithForm;

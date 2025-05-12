@@ -3,9 +3,11 @@
 import Popup from './Popup.js';
 
 class PopupWithForm extends Popup {
-    constructor(popupSelector, callbackFunction) {
+    constructor(popupSelector, {callbackFunction}) {
         super(popupSelector);
         this._callbackFunction = callbackFunction;
+        // make this a property? instead of inside _getInputValues method
+        this._inputValues = this._popupSelector.querySelectorAll(".popup__input");
     }
 
     _getInputValues() {
@@ -13,22 +15,23 @@ class PopupWithForm extends Popup {
         object. This data should then be passed to the 
         submission handler as an argument. */
 
-        let valuesObject = {};
 
-        const inputValues = this._popupSelector.querySelectorAll(".popup__input");
+        // create empy object, have forEach create new object with data
 
-        inputValues.forEach((input) => {
-            // add the func of transforming date to the method
+        let emptyObject = {};
+
+        // I think the issue is this forEach method is not creating m
+        this._inputValues.forEach((input) => {
             if (input.name === "date") {
-                const date = new Date(input.date.value);
+                const date = new Date(input.value);
                 date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-                valuesObject[input.name] = date;
+                emptyObject[input.name] = date;
+            } else {
+                emptyObject[input.name] = input.value;
             }
-
-            valuesObject[input.name] = input.value;
         })
 
-        return valuesObject;
+        return emptyObject;
     }
 
     setEventListeners() {
@@ -44,7 +47,10 @@ class PopupWithForm extends Popup {
             // pass the valuesObject to submission handler as argument (we will define _callbackFunction)
             // when declaring our first actual PopupWithForm Class, and we weill cater the func 
             // to specifically making new Todo items.
-            this._callbackFunction(this._getInputValues);
+            this._callbackFunction(this._getInputValues());
+
+            this.close();
+
         })
     }
 }
@@ -54,6 +60,23 @@ class PopupWithForm extends Popup {
 // 
 /* Testing Below, transfer to appropiate place once confirmed working */
 
-import { addTodoForm } from '../pages/index.js';
+import { addTodoForm, rendererNewTodo, todoTemplate, addTodoButton } from '../pages/index.js';
+import {Section} from "../utils/Section.js";
+import {Todo} from "../components/Todo.js";
+import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 
-const TestTest = new PopupWithForm()
+
+// had to make the 'popupSelector' for the PopupWithForm class and ID selector temp but will look into fixing
+// 
+// problem is Section renderers by iterating over an ARRAY of OBJECTS but our PopupWithForms '_getInputValues'
+// method only returns a SINGLE OBJECT with all the data to create ONE Todo. So we need to figure out
+// how to fix this
+export const TestTest = new PopupWithForm("#add-todo-popup", {callbackFunction: rendererNewTodo});
+
+// I think the problem is NewTodosData is not defined anywhere
+// TestTest._callbackFunction();
+// TestTest._getInputValues();
+
+TestTest.setEventListeners();
+
+

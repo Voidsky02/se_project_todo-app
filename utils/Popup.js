@@ -12,7 +12,7 @@ class Popup {
         this._popupSelector.classList.add("popup_visible");
 
         // use handleEscapeClose() to add escape key func
-        this._handleEscapeClose;
+        this._handleEscapeClose();
     }
 
     close() {
@@ -50,7 +50,7 @@ class Popup {
         shaded area around the form. */
 
         // Add Event Listener to close icon
-        this._popupSelector.querySelector(".popup__close").addEventListener("click", this.close);
+        this._popupSelector.querySelector(".popup__close").addEventListener("click", this.close());
 
         // Code for closing modal when outside area is clicked
         this._popupSelector.addEventListener("mousedown", (event) => {

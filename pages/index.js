@@ -4,6 +4,7 @@ import {Section} from "../utils/Section.js";
 import { Todo } from "../components/Todo.js";
 import { FormValidator } from "../components/FormValidator.js";
 import PopupWithForm from "../utils/PopupWithForm.js";
+import TodoCounter from "../utils/TodoCounter.js";
 
 
 // temp export, delete later
@@ -14,10 +15,15 @@ export const addTodoForm = document.forms["add-todo-form"];
 export const todoTemplate = document.querySelector("#todo-template");
 const todosList = document.querySelector(".todos__list");
 
+// TodoCounter Callback Function
+function handleCheck(completed) {
+  experiment.updateCompleted(completed);
+}
+
 // create func to add to renderer: parameter when making new Todo items so i dont repeate myself
 // temp export????
 const rendererNewTodo = (cardItem) => {
-  const todo = new Todo(cardItem, todoTemplate, uuidv4());
+  const todo = new Todo(cardItem, todoTemplate, uuidv4(), handleCheck);
   const readyTodoEl = todo.getView();
   // TEMP LINE BELOW
   todosList.append(readyTodoEl);
@@ -58,7 +64,7 @@ addTodoButton.addEventListener("click", () => {
 // 
 // 
 // testing for TodoCounter below
-import TodoCounter from "../utils/TodoCounter.js";
+// import TodoCounter from "../utils/TodoCounter.js";
 
 // experiment._todos.forEach((todo) => {
 //   experiment.updateCompleted(todo);

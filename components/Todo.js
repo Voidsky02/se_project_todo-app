@@ -1,10 +1,11 @@
 export class Todo {
-  constructor(data, selector, id) {
+  constructor(data, selector, id, handleCheck) {
     this._id = id;
     this._name = data.name;
     this._completed = data.completed;
     this._date = data.date;
     this._selector = selector;
+    this._handleCheck = handleCheck;
   }
 
   _setEventListeners() {
@@ -13,7 +14,10 @@ export class Todo {
       this.todoEl.remove();
     });
 
-    this.checkboxEl.addEventListener("click", () => {});
+    this.checkboxEl.addEventListener("click", () => {
+      this._toggleCompletion();
+      this._handleCheck(this._completed);
+    });
   }
 
   getView() {
@@ -49,4 +53,9 @@ export class Todo {
 
     return todoElement;
   }
+
+  _toggleCompletion() {
+    this._completed = !this._completed;
+  }
+
 }

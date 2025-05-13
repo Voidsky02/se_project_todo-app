@@ -1,5 +1,4 @@
 // child to Popup Class...
-
 import Popup from './Popup.js';
 
 class PopupWithForm extends Popup {
@@ -16,26 +15,23 @@ class PopupWithForm extends Popup {
         object. This data should then be passed to the 
         submission handler as an argument. */
 
-
-        // create empy object, have forEach create new object with data
-
-        let emptyObject = {};
+        let newTodoObject = {};
 
         this._inputValues.forEach((input) => {
             if (input.name === "date") {
                 const date = new Date(input.value);
                 date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-                emptyObject[input.name] = date;
+                newTodoObject[input.name] = date;
             } else {
-                emptyObject[input.name] = input.value;
+                newTodoObject[input.name] = input.value;
             }
         })
 
-        return emptyObject;
+        return newTodoObject;
     }
 
     setEventListeners() {
-        // we will override the parents method
+        // override the parents method
         super.setEventListeners();
 
         /* The setEventListeners() method of the PopupWithForm class 
@@ -45,7 +41,7 @@ class PopupWithForm extends Popup {
             event.preventDefault();
 
             // pass the valuesObject to submission handler as argument (we will define _callbackFunction)
-            // when declaring our first actual PopupWithForm Class, and we weill cater the func 
+            // when declaring our first actual PopupWithForm Class, and we we will cater the func 
             // to specifically making new Todo items.
             this._callbackFunction(this._getInputValues());
 

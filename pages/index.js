@@ -6,44 +6,36 @@ import { FormValidator } from "../components/FormValidator.js";
 import PopupWithForm from "../utils/PopupWithForm.js";
 import TodoCounter from "../utils/TodoCounter.js";
 
-
-// temp export, delete later
-export const addTodoButton = document.querySelector(".button_action_add");
-const addTodoPopup = document.querySelector("#add-todo-popup");
-// temp export, delete later
-export const addTodoForm = document.forms["add-todo-form"];
-export const todoTemplate = document.querySelector("#todo-template");
+const addTodoButton = document.querySelector(".button_action_add");
+const addTodoPopup = "#add-todo-popup";
+const addTodoForm = document.forms["add-todo-form"];
+const todoTemplate = document.querySelector("#todo-template");
 const todosList = document.querySelector(".todos__list");
 
 // TodoCounter Callback Function
 function handleCheck(completed) {
-  experiment.updateCompleted(completed);
+  todoCounter.updateCompleted(completed);
 }
 
 function handleDelete(completed) {
   if (completed) {
-    experiment.updateCompleted(false);
+    todoCounter.updateCompleted(false);
   }
-  experiment.updateTotal(false);
+  todoCounter.updateTotal(false);
 }
 
 function handleSubmit() {
-    experiment.updateTotal(true);
+    todoCounter.updateTotal(true);
 }
 
 // create func to add to renderer: parameter when making new Todo items so i dont repeate myself
-// temp export????
 const rendererNewTodo = (cardItem) => {
   const todo = new Todo(cardItem, todoTemplate, uuidv4(), handleCheck, handleDelete);
   const readyTodoEl = todo.getView();
-  // TEMP LINE BELOW
   todosList.append(readyTodoEl);
-  //
   return readyTodoEl;
 }
 
-// 
-// 
 /* This sets up the initial default Todo's.
    Renderer is defined when creating a new Section instance, not when defining
    the Section class itself. */
@@ -51,18 +43,13 @@ const testRun = new Section({items: initialTodos, renderer: rendererNewTodo, con
 
 testRun.renderItems()
 
-// 
-// 
 // Create an instance of the FormValidator class and call its
 // enableValidation() method.
 const validateAddTodoForm = new FormValidator(validationConfig, addTodoForm);
 validateAddTodoForm.enableValidation();
 
-
-//
-// 
 // Initiating AddTodo PopopWithForm class - calling its various methods below
-const AddTodoPopupWithForm = new PopupWithForm("#add-todo-popup", {callbackFunction: rendererNewTodo}, handleSubmit);
+const AddTodoPopupWithForm = new PopupWithForm(addTodoPopup, {callbackFunction: rendererNewTodo}, handleSubmit);
 
 AddTodoPopupWithForm.setEventListeners();
 
@@ -70,25 +57,7 @@ addTodoButton.addEventListener("click", () => {
   AddTodoPopupWithForm.open();
 });
 
+// initiate new todo counter, call _update text
+const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
-// 
-// 
-// 
-// testing for TodoCounter below
-// import TodoCounter from "../utils/TodoCounter.js";
-
-// experiment._todos.forEach((todo) => {
-//   experiment.updateCompleted(todo);
-// })
-
-const experiment = new TodoCounter(initialTodos, ".counter__text");
-
-// experiment._todos.forEach((todo) => {
-//   experiment.updateCompleted(todo.completed === true);
-// })
-
-// create a function that takes all todo elements, adds eventListeners to every checkbox and delete button, 
-// and calls experiment.updateCompleted for checkboxes, and 
-// experiment.updateTotal for delete buttons
-
-experiment._updateText();
+todoCounter._updateText();

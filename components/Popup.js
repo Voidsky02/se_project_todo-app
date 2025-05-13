@@ -5,9 +5,6 @@ class Popup {
 
     open() {
         // open the popup 
-        /* The open() method should be called in the preexisting event
-        handlers in index.js. */
-
         this._popupSelector.classList.add("popup_visible");
 
         // use handleEscapeClose() to add escape key func

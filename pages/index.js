@@ -53,3 +53,27 @@ addTodoButton.addEventListener("click", () => {
   AddTodoPopupWithForm.open();
 });
 
+
+// 
+// 
+// 
+// testing for TodoCounter below
+import TodoCounter from "../utils/TodoCounter.js";
+
+// experiment._todos.forEach((todo) => {
+//   experiment.updateCompleted(todo);
+// })
+
+const experiment = new TodoCounter(initialTodos, ".counter__text");
+
+// experiment._todos.forEach((todo) => {
+//   experiment.updateCompleted(todo.completed === true);
+// })
+
+// create a function that takes all todo elements, adds eventListeners to every checkbox and delete button, 
+// and calls experiment.updateCompleted for checkboxes, and 
+// experiment.updateTotal for delete buttons
+
+experiment._updateText();
+
+console.log(experiment._completed);

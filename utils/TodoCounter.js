@@ -5,14 +5,10 @@ class TodoCounter {
   // todos should be the array of initial todos
   // selector is the selector for the counter text element
   constructor(todos, selector) {
-    this._todos = todos;
-    this._selector = selector;
-    // select the appropriate element
-    this._element = 
-    // number of completed todos
-    this._completed = this._todos.filter((object) => {object.completed});
-    // the total number of todos  document
-    this._total = this._todos.length;
+    this._element = document.querySelector(selector);
+    this._completed = 0;
+    this._total = todos.length;
+    this._completed = todos.filter((todos) => todos.completed).length;
   }
   
   // Call this when a checkbox is clicked, and when a completed
@@ -26,6 +22,8 @@ class TodoCounter {
     } else {
         this._completed -= 1;
     }
+
+
 
   };
 
@@ -54,6 +52,7 @@ class TodoCounter {
 export default TodoCounter;
 
 // TESTING BELOW, DELETE LATER:
-const experiment = new TodoCounter(initialTodos, ".counter__text");
+// export const experiment = new TodoCounter(initialTodos, ".counter__text");
 
-// console.log(experiment._completed);
+// console.log(experiment._todos);
+// experiment._updateText();

@@ -29,6 +29,7 @@ class Popup {
         const isKeyEscape = (event) => {
             if (event.key === "Escape") {
                 this.close();
+                console.log("test");
                 removeEscapeKeyListener();
             }
         }
@@ -36,11 +37,11 @@ class Popup {
         // create func for removing Escape key event listener, put 
         // this in the isKeyEscape func
         const removeEscapeKeyListener = () => {
-            this._popupSelector.removeEventListener("keydown", isKeyEscape);
+            document.removeEventListener("keydown", isKeyEscape);
         }
 
         // going to call this on opening modals
-        this._popupSelector.addEventListener("keydown", isKeyEscape);
+        document.addEventListener("keydown", isKeyEscape);
 
     }
 

@@ -17,6 +17,7 @@ function handleCheck(completed) {
   todoCounter.updateCompleted(completed);
 }
 
+// TodoCounter delete btns total updater
 function handleDelete(completed) {
   if (completed) {
     todoCounter.updateCompleted(false);
@@ -24,6 +25,7 @@ function handleDelete(completed) {
   todoCounter.updateTotal(false);
 }
 
+// TodoCounter submit events total todo's updater
 function handleSubmit() {
     todoCounter.updateTotal(true);
 }
@@ -40,7 +42,6 @@ const rendererNewTodo = (cardItem) => {
    Renderer is defined when creating a new Section instance, not when defining
    the Section class itself. */
 const testRun = new Section({items: initialTodos, renderer: rendererNewTodo, containerSelector: ".todos__list"})
-
 testRun.renderItems()
 
 // Create an instance of the FormValidator class and call its
@@ -50,14 +51,11 @@ validateAddTodoForm.enableValidation();
 
 // Initiating AddTodo PopopWithForm class - calling its various methods below
 const AddTodoPopupWithForm = new PopupWithForm(addTodoPopup, {callbackFunction: rendererNewTodo}, handleSubmit);
-
 AddTodoPopupWithForm.setEventListeners();
-
 addTodoButton.addEventListener("click", () => {
   AddTodoPopupWithForm.open();
 });
 
 // initiate new todo counter, call _update text
 const todoCounter = new TodoCounter(initialTodos, ".counter__text");
-
 todoCounter._updateText();

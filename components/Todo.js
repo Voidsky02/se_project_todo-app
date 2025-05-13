@@ -1,17 +1,19 @@
 export class Todo {
-  constructor(data, selector, id, handleCheck) {
+  constructor(data, selector, id, handleCheck, handleDelete) {
     this._id = id;
     this._name = data.name;
     this._completed = data.completed;
     this._date = data.date;
     this._selector = selector;
     this._handleCheck = handleCheck;
+    this._handleDelete = handleDelete;
   }
 
   _setEventListeners() {
     // Set event listeners for 'Delete Button' and 'Checkbox'
     this.deleteBtn.addEventListener("click", () => {
       this.todoEl.remove();
+      this._handleDelete(this._completed);
     });
 
     this.checkboxEl.addEventListener("click", () => {

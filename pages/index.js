@@ -20,10 +20,21 @@ function handleCheck(completed) {
   experiment.updateCompleted(completed);
 }
 
+function handleDelete(completed) {
+  if (completed) {
+    experiment.updateCompleted(false);
+  }
+  experiment.updateTotal(false);
+}
+
+function handleSubmit() {
+    experiment.updateTotal(true);
+}
+
 // create func to add to renderer: parameter when making new Todo items so i dont repeate myself
 // temp export????
 const rendererNewTodo = (cardItem) => {
-  const todo = new Todo(cardItem, todoTemplate, uuidv4(), handleCheck);
+  const todo = new Todo(cardItem, todoTemplate, uuidv4(), handleCheck, handleDelete);
   const readyTodoEl = todo.getView();
   // TEMP LINE BELOW
   todosList.append(readyTodoEl);
@@ -51,7 +62,7 @@ validateAddTodoForm.enableValidation();
 //
 // 
 // Initiating AddTodo PopopWithForm class - calling its various methods below
-const AddTodoPopupWithForm = new PopupWithForm("#add-todo-popup", {callbackFunction: rendererNewTodo});
+const AddTodoPopupWithForm = new PopupWithForm("#add-todo-popup", {callbackFunction: rendererNewTodo}, handleSubmit);
 
 AddTodoPopupWithForm.setEventListeners();
 
@@ -81,5 +92,3 @@ const experiment = new TodoCounter(initialTodos, ".counter__text");
 // experiment.updateTotal for delete buttons
 
 experiment._updateText();
-
-console.log(experiment._completed);

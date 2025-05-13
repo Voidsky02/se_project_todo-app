@@ -3,11 +3,12 @@
 import Popup from './Popup.js';
 
 class PopupWithForm extends Popup {
-    constructor(popupSelector, {callbackFunction}) {
+    constructor(popupSelector, {callbackFunction}, handleSubmit) {
         super(popupSelector);
         this._callbackFunction = callbackFunction;
         // List of all input methods as a property of the object for ease of access
         this._inputValues = this._popupSelector.querySelectorAll(".popup__input");
+        this._handleSubmit = handleSubmit;
     }
 
     _getInputValues() {
@@ -47,6 +48,8 @@ class PopupWithForm extends Popup {
             // when declaring our first actual PopupWithForm Class, and we weill cater the func 
             // to specifically making new Todo items.
             this._callbackFunction(this._getInputValues());
+
+            this._handleSubmit(true);
 
             this.close();
 

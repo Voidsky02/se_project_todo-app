@@ -6,7 +6,7 @@ class PopupWithForm extends Popup {
         super(popupSelector);
         this._callbackFunction = callbackFunction;
         // List of all input methods as a property of the object for ease of access
-        this._inputValues = this._popupSelector.querySelectorAll(".popup__input");
+        this._inputValues = this._popupElement.querySelectorAll(".popup__input");
         this._handleSubmit = handleSubmit;
     }
 
@@ -37,7 +37,7 @@ class PopupWithForm extends Popup {
         /* The setEventListeners() method of the PopupWithForm class 
         should add a submit event listener to the form and call the 
         setEventListeners() method of the parent class. */
-        this._popupSelector.addEventListener("submit", (event) => {
+        this._popupElement.addEventListener("submit", (event) => {
             event.preventDefault();
 
             // pass the valuesObject to submission handler as argument (we will define _callbackFunction)
@@ -45,7 +45,7 @@ class PopupWithForm extends Popup {
             // to specifically making new Todo items.
             this._callbackFunction(this._getInputValues());
 
-            this._handleSubmit(true);
+            this._handleSubmit();
 
             this.close();
 

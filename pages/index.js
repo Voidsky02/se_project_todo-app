@@ -34,6 +34,7 @@ function handleSubmit() {
 const rendererNewTodo = (cardItem) => {
   const todo = new Todo(cardItem, todoTemplate, uuidv4(), handleCheck, handleDelete);
   const readyTodoEl = todo.getView();
+  // need to remove bottom line of code and use section
   todosList.append(readyTodoEl);
   return readyTodoEl;
 }
@@ -41,21 +42,26 @@ const rendererNewTodo = (cardItem) => {
 /* This sets up the initial default Todo's.
    Renderer is defined when creating a new Section instance, not when defining
    the Section class itself. */
-const testRun = new Section({items: initialTodos, renderer: rendererNewTodo, containerSelector: ".todos__list"})
-testRun.renderItems()
+const initialTodosSection = new Section({items: initialTodos, renderer: rendererNewTodo, containerSelector: ".todos__list"})
+
+initialTodosSection.renderItems()
 
 // Create an instance of the FormValidator class and call its
 // enableValidation() method.
 const validateAddTodoForm = new FormValidator(validationConfig, addTodoForm);
+
 validateAddTodoForm.enableValidation();
 
 // Initiating AddTodo PopopWithForm class - calling its various methods below
-const AddTodoPopupWithForm = new PopupWithForm(addTodoPopup, {callbackFunction: rendererNewTodo}, handleSubmit);
-AddTodoPopupWithForm.setEventListeners();
+const addTodoPopupWithForm = new PopupWithForm(addTodoPopup, {callbackFunction: rendererNewTodo}, handleSubmit);
+
+addTodoPopupWithForm.setEventListeners();
+
 addTodoButton.addEventListener("click", () => {
-  AddTodoPopupWithForm.open();
+  addTodoPopupWithForm.open();
 });
 
 // initiate new todo counter, call _update text
 const todoCounter = new TodoCounter(initialTodos, ".counter__text");
+
 todoCounter._updateText();

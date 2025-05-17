@@ -13,6 +13,7 @@ export class Todo {
     // Set event listeners for 'Delete Button' and 'Checkbox'
     this.deleteBtn.addEventListener("click", () => {
       this.todoEl.remove();
+      this.todoEl = null;
       this._handleDelete(this._completed);
     });
 

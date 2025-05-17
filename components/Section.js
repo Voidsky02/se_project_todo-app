@@ -8,7 +8,7 @@ export class Section {
        this._items = items;
        this._renderer = renderer;
     //    believe making this an actual DOM element makes things easier
-       this._containerSelector = document.querySelector(containerSelector);
+       this._containerElement = document.querySelector(containerSelector);
     }
 
     renderItems() {
@@ -32,7 +32,7 @@ export class Section {
     addItem(item) {
         /* takes a DOM element and adds it to the container. This method
          should be called when adding an individual card to the DOM */
-        this._containerSelector.append(item);
+        this._containerElement.append(item);
     }
 }
 

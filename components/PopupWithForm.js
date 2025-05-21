@@ -8,6 +8,7 @@ class PopupWithForm extends Popup {
         // List of all input methods as a property of the object for ease of access
         this._inputValues = this._popupElement.querySelectorAll(".popup__input");
         this._handleSubmit = handleSubmit;
+        this._popupForm = this._popupElement.querySelector(".popup__form");
     }
 
     _getInputValues() {

@@ -55,6 +55,9 @@ const addTodoPopupWithForm = new PopupWithForm(addTodoPopup, {callbackFunction: 
   let newTodoMarkup = rendererNewTodo(inputList);
   let addTodoFormSection = new Section({items: newTodoMarkup, renderer: "", containerSelector: ".todos__list"});
   addTodoFormSection.addItem(newTodoMarkup);
+  /* put resetValidation here to avoid reseting inputs before rendering,
+   resulting in an empty todo */ 
+  validateAddTodoForm.resetValidation();
 }}, handleSubmit);
 
 addTodoPopupWithForm.setEventListeners();

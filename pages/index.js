@@ -34,8 +34,6 @@ function handleSubmit() {
 const rendererNewTodo = (cardItem) => {
   const todo = new Todo(cardItem, todoTemplate, uuidv4(), handleCheck, handleDelete);
   const readyTodoEl = todo.getView();
-  // need to remove bottom line of code and use section
-  todosList.append(readyTodoEl);
   return readyTodoEl;
 }
 
@@ -53,9 +51,14 @@ const validateAddTodoForm = new FormValidator(validationConfig, addTodoForm);
 validateAddTodoForm.enableValidation();
 
 // Initiating AddTodo PopopWithForm class - calling its various methods below
-const addTodoPopupWithForm = new PopupWithForm(addTodoPopup, {callbackFunction: rendererNewTodo}, handleSubmit);
+const addTodoPopupWithForm = new PopupWithForm(addTodoPopup, {callbackFunction: (inputList) => {
+  let newTodoMarkup = rendererNewTodo(inputList);
+  let addTodoFormSection = new Section({items: newTodoMarkup, renderer: "", containerSelector: ".todos__list"});
+  addTodoFormSection.addItem(newTodoMarkup);
+}}, handleSubmit);
 
 addTodoPopupWithForm.setEventListeners();
+
 
 addTodoButton.addEventListener("click", () => {
   addTodoPopupWithForm.open();

@@ -70,7 +70,8 @@ export class FormValidator {
   enableValidation() {
     this._formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      // this.resetValidation();
+      // this resets before adding todo element, resulting in empty todo
+      this.resetValidation();
     });
 
     this._setEventListeners();

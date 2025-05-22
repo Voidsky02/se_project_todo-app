@@ -30,7 +30,7 @@ function handleSubmit() {
     todoCounter.updateTotal(true);
 }
 
-// create func to add to renderer: parameter when making new Todo items so i dont repeate myself
+// create func to add to renderer: parameter when making new Todo items
 const rendererNewTodo = (cardItem) => {
   const todo = new Todo(cardItem, todoTemplate, uuidv4(), handleCheck, handleDelete);
   const readyTodoEl = todo.getView();
@@ -52,8 +52,8 @@ validateAddTodoForm.enableValidation();
 
 // Initiating AddTodo PopopWithForm class - calling its various methods below
 const addTodoPopupWithForm = new PopupWithForm(addTodoPopup, {callbackFunction: (inputList) => {
-  let newTodoMarkup = rendererNewTodo(inputList);
-  let addTodoFormSection = new Section({items: newTodoMarkup, renderer: "", containerSelector: ".todos__list"});
+  const newTodoMarkup = rendererNewTodo(inputList);
+  const addTodoFormSection = new Section({items: newTodoMarkup, renderer: "", containerSelector: ".todos__list"});
   addTodoFormSection.addItem(newTodoMarkup);
   /* put resetValidation here to avoid reseting inputs before rendering,
    resulting in an empty todo */ 

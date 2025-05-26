@@ -60,5 +60,4 @@ export class Todo {
   _toggleCompletion() {
     this._completed = !this._completed;
   }
-
 }
